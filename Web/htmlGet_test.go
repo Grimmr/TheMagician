@@ -24,6 +24,8 @@ func TestFetchWebPageSimple(t *testing.T) {
 }
 
 func TestFetchWebPageRateLimit(t *testing.T) {
+	time.Sleep(5*time.Second)
+	
 	start := time.Now().UnixNano()
 	for i:=0; i<3; i++ {
 		FetchWebPage("https://www.google.co.uk")
