@@ -25,12 +25,12 @@ func TestFetchWebPageSimple(t *testing.T) {
 
 func TestFetchWebPageRateLimit(t *testing.T) {
 	start := time.Now().UnixNano()
-	for i:=0; i<3; i++ {
+	for i:=0; i<2; i++ {
 		FetchWebPage("https://www.google.co.uk")
 	}
 	end := time.Now().UnixNano()
 
-	if end - start < 3000000000 {
+	if end - start < 2000000000 {
 		t.Errorf("responded too fast")
 	}
 }
