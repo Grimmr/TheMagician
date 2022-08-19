@@ -1,8 +1,8 @@
 package BackendInterface
 
 type Backend interface {
-	SetListUrl string
+	GetSetListUrl() string
 	GetSetUrls([]string) []string
 	GetCardUrlsFromSet(string, []string) string
-	GetCardDataFromUrl(string) string
+	GetCardDataFromUrl(string) map[string]string
 }
