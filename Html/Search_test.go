@@ -3,6 +3,7 @@ package Html
 import (
 	"os"
 	"testing"
+
 	"golang.org/x/net/html"
 )
 
@@ -15,7 +16,7 @@ func TestFindNodesWithAttrsSingle(t *testing.T) {
 	}
 
 	targets := []map[string]string{
-		map[string]string{"title": "Password"}}
+		{"title": "Password"}}
 
 	found := FindNodesWithAttrs(rootNode, targets)
 	if found == nil {
@@ -24,7 +25,7 @@ func TestFindNodesWithAttrsSingle(t *testing.T) {
 
 	if found[0].Attr[0].Val != "/wiki/Password" {
 		t.Fatalf("found wrong node")
-	} else
+	}
 }
 
 func TestFindNodesWithAttrsMulti(t *testing.T) {
@@ -36,7 +37,7 @@ func TestFindNodesWithAttrsMulti(t *testing.T) {
 	}
 
 	targets := []map[string]string{
-		map[string]string{"class": "mw-body-content", "id": "siteNotice"}}
+		{"class": "mw-body-content", "id": "siteNotice"}}
 
 	found := FindNodesWithAttrs(rootNode, targets)
 	if found == nil {
@@ -57,8 +58,8 @@ func TestFindNodesWithAttrsMultiNode(t *testing.T) {
 	}
 
 	targets := []map[string]string{
-		map[string]string{"class": "mw-body-content", "id": "siteNotice"},
-		map[string]string{"title": "Password"}}
+		{"class": "mw-body-content", "id": "siteNotice"},
+		{"title": "Password"}}
 
 	found := FindNodesWithAttrs(rootNode, targets)
 	if found == nil {
