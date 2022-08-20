@@ -3,7 +3,6 @@ package Html
 import (
 	"os"
 	"testing"
-
 	"golang.org/x/net/html"
 )
 
@@ -25,7 +24,7 @@ func TestFindNodesWithAttrsSingle(t *testing.T) {
 
 	if found[0].Attr[0].Val != "/wiki/Password" {
 		t.Fatalf("found wrong node")
-	}
+	} else
 }
 
 func TestFindNodesWithAttrsMulti(t *testing.T) {
