@@ -6,9 +6,6 @@ import (
 	"golang.org/x/net/html"
 )
 
-type YgoBackend struct {
-}
-
 func (this *YgoBackend) GetCardDataFromUrl(url string) map[string]string {
 	return getCardDataFromHtml(Web.FetchWebPage(url))
 }

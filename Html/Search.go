@@ -44,3 +44,30 @@ func FindNodesWithAttrs(start *html.Node, targets []map[string]string) map[int]*
 
 	return out
 }
+
+func FindNodesWithData(start *html.Node, targets []string) map[int]*html.Node {
+	out := make(map[int]*html.Node)
+
+	//is this our node
+	for targetIndex, targetData := range targets {
+		if start.Data == targetData {
+			out[targetIndex] = start
+		}
+	}
+	//check our sibling (and it's children)
+	if start.NextSibling != nil {
+		found := FindNodesWithData(start.NextSibling, targets)
+		for key, value := range found {
+			out[key] = value
+		}
+	}
+	//check our children
+	if start.FirstChild != nil {
+		found := FindNodesWithData(start.FirstChild, targets)
+		for key, value := range found {
+			out[key] = value
+		}
+	}
+
+	return out
+}
