@@ -74,3 +74,23 @@ func TestFindNodesWithAttrsMultiNode(t *testing.T) {
 		t.Fatalf("found wrong node")
 	}
 }
+
+func TestFindNodeWithDataSimple(t *testing.T) {
+	file, _ := os.Open("../TestHTML/ygo/Dummy.html")
+
+	rootNode, err := html.Parse(file)
+	if err != nil {
+		t.Fatalf("got error when reading HTML: %s", err)
+	}
+
+	targets := []string{"someData"}
+
+	found := FindNodesWithData(rootNode, targets, false)
+	if len(found) != 1 {
+		t.Fatalf("expected 1 result, got %d", len(found))
+	}
+
+	if found[0].Data != "someData" {
+		t.Errorf("found wrong node")
+	}
+}
