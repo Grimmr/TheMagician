@@ -6,7 +6,7 @@ import (
 	"golang.org/x/net/html"
 )
 
-func (this *YgoBackend) GetCardUrlsFromSet(url string) []string {
+func (this YgoBackend) GetCardUrlsFromSet(url string) []string {
 	tableUrl := this.getTableUrlFromHtml(Web.FetchWebPage(url))
 	return this.getCardUrlsFromTableHtml(Web.FetchWebPage(tableUrl))
 }

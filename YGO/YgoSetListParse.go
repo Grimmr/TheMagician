@@ -8,7 +8,7 @@ import (
 	"golang.org/x/net/html"
 )
 
-func (this *YgoBackend) GetSetUrls(url string) []map[string]string {
+func (this YgoBackend) GetSetUrls(url string) []map[string]string {
 	return this.getSetUrlsFromHtml(Web.FetchWebPage(url))
 }
 
