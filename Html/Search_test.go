@@ -85,7 +85,7 @@ func TestFindNodeWithDataSimple(t *testing.T) {
 
 	targets := []string{"someData"}
 
-	found := FindNodesWithData(rootNode, targets)
+	found := FindNodesWithData(rootNode, targets, false)
 	if len(found) != 1 {
 		t.Fatalf("expected 1 result, got %d", len(found))
 	}
