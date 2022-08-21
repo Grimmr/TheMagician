@@ -14,11 +14,11 @@ func (this *YgoBackend) GetCardUrlsFromSet(url string) []string {
 func (this *YgoBackend) getTableUrlFromHtml(node *html.Node) string {
 	naviRowNode := Html.FindNodesWithAttrs(node, []map[string]string{{"class": "set-navigation"}})[0].FirstChild.NextSibling
 
-	foundLinkNodes := Html.FindNodesWithData(naviRowNode, []string{"European English"}, false)
-	if len(foundLinkNodes) == 0 { //we didn't find the EU english
-		foundLinkNodes = Html.FindNodesWithData(naviRowNode, []string{"North American English"}, false) //default to NA
-	}
+	foundLinkNodes := Html.FindNodesWithData(naviRowNode, []string{"European English", "North American English"}, false)
 	linkNode := foundLinkNodes[0]
+	if linkNode == nil { //we didn't find the EU english
+		linkNode = foundLinkNodes[1]
+	}
 
 	urlSuffix := linkNode.Parent.Attr[0].Val
 

@@ -1,9 +1,6 @@
 package main
 
-import (
-	"github.com/Grimmr/TheMagician/Headless"
-)
-
 func main() {
-	Headless.CmdMain()
+	/*var backend BackendInterface.Backend
+	backend = &YGO.YgoBackend{}*/
 }
