@@ -20,7 +20,7 @@ type setListSelectModel struct {
 
 func NewSetListSelectModel(backEnd BackendInterface.Backend, spin spinner.Model) setListSelectModel {
 	//setup setlist
-	listUi := newList([]item{}, styleForegroundBright, styleForeground)
+	listUi := newList([]item{}, 20, styleForegroundBright, styleForeground)
 
 	return setListSelectModel{backend: backEnd, spinner: spin, setListUI: listUi, waitingForSetData: true}
 }
@@ -73,7 +73,9 @@ func (m setListSelectModel) fetchSetList() tea.Cmd {
 		//return fetchSetListDone{data: m.backend.GetSetUrls(m.backend.GetSetListUrl())}
 		return fetchSetListDone{data: []map[string]string{
 			{"name": "pokemon", "date": "2022-March-01", "url": "dont care"},
-			{"name": "magic", "date": "2012-June-08", "url": "dont care"}},
-		}
+			{"name": "magic", "date": "2012-June-08", "url": "dont care"},
+			{"name": "digimon", "date": "2012-October-08", "url": "dont care"},
+			{"name": "ygo", "date": "2032-October-18", "url": "dont care"},
+		}}
 	}
 }
