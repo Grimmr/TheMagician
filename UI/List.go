@@ -55,7 +55,7 @@ func (this *list) PageDown() {
 	}
 }
 
-func (this *list) Update(msg tea.Msg) {
+func (this *list) Update(msg tea.Msg) tea.Cmd {
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		switch msg.String() {
@@ -83,10 +83,12 @@ func (this *list) Update(msg tea.Msg) {
 			}
 		}
 	}
+
+	return nil
 }
 
 func (this *list) View() string {
-	helpText := this.headerStyle.Render(" - Enter: Select   Left: Prev Page   Right: Next Page\n       f: filter      g: go-to")
+	helpText := this.headerStyle.Render(" - Enter: Select   Left: Prev Page   Right: Next Page")
 	pageCount := this.headerStyle.Render(fmt.Sprintf("%d/%d", this.page+1, this.pageCount()))
 	head := lipgloss.JoinHorizontal(0, pageCount, helpText)
 

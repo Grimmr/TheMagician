@@ -37,7 +37,7 @@ func (m setListSelectModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			return m, tea.Quit
 		}
 		if !m.waitingForSetData {
-			m.setListUI.Update(msg)
+			return m, m.setListUI.Update(msg)
 		}
 	case spinner.TickMsg:
 		var cmd tea.Cmd
