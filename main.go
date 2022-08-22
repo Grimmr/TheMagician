@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	p := tea.NewProgram(UI.NewModel())
+	p := tea.NewProgram(UI.NewBackendSetupModel())
 	p.Start()
 }
