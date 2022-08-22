@@ -11,11 +11,11 @@ import (
 type modelState int
 
 type setListSelectModel struct {
-	backend     BackendInterface.Backend
-	spinner     spinner.Model
-	setListData []map[string]string
+	backend           BackendInterface.Backend
+	spinner           spinner.Model
+	setListData       []map[string]string
 	waitingForSetData bool
-	setListUI   list
+	setListUI         list
 }
 
 func NewSetListSelectModel(backEnd BackendInterface.Backend, spin spinner.Model) setListSelectModel {
@@ -70,12 +70,12 @@ type fetchSetListDone struct {
 
 func (m setListSelectModel) fetchSetList() tea.Cmd {
 	return func() tea.Msg {
-		//return fetchSetListDone{data: m.backend.GetSetUrls(m.backend.GetSetListUrl())}
-		return fetchSetListDone{data: []map[string]string{
+		return fetchSetListDone{data: m.backend.GetSetUrls(m.backend.GetSetListUrl())}
+		/*return fetchSetListDone{data: []map[string]string{
 			{"name": "pokemon", "date": "2022-March-01", "url": "dont care"},
 			{"name": "magic", "date": "2012-June-08", "url": "dont care"},
 			{"name": "digimon", "date": "2012-October-08", "url": "dont care"},
 			{"name": "ygo", "date": "2032-October-18", "url": "dont care"},
-		}}
+		}}*/
 	}
 }
