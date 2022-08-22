@@ -10,7 +10,7 @@ import (
 )
 
 type BackendSetupModel struct {
-	spinner     spinner.Model
+	spinner spinner.Model
 }
 
 func NewBackendSetupModel() BackendSetupModel {
@@ -18,7 +18,7 @@ func NewBackendSetupModel() BackendSetupModel {
 	spin := spinner.New()
 	spin.Spinner = spinner.Moon
 	spin.Spinner.FPS = time.Second / 8
-	spin.Style = styleForegroundBright
+	spin.Style = styleForegroundDim
 
 	return BackendSetupModel{spinner: spin}
 }

@@ -3,7 +3,6 @@ package UI
 import (
 	"fmt"
 	"math"
-	"strings"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
@@ -21,10 +20,11 @@ type list struct {
 	rows            []item
 	selectedStyle   lipgloss.Style
 	unselectedStyle lipgloss.Style
+	headerStyle     lipgloss.Style
 }
 
-func newList(items []item, pageS int, s lipgloss.Style, u lipgloss.Style) list {
-	return list{pos: 0, rows: items, pageSize: pageS, selectedStyle: s, unselectedStyle: u}
+func newList(items []item, pageS int, s lipgloss.Style, u lipgloss.Style, h lipgloss.Style) list {
+	return list{pos: 0, rows: items, pageSize: pageS, selectedStyle: s, unselectedStyle: u, headerStyle: h}
 }
 
 func (this *list) pageCount() int {
@@ -86,7 +86,9 @@ func (this *list) Update(msg tea.Msg) {
 }
 
 func (this *list) View() string {
-	head := this.unselectedStyle.Render(fmt.Sprintf("%d/%d", this.page+1, this.pageCount()))
+	helpText := this.headerStyle.Render(" - Enter: Select   Left: Prev Page   Right: Next Page\n       f: filter      g: go-to")
+	pageCount := this.headerStyle.Render(fmt.Sprintf("%d/%d", this.page+1, this.pageCount()))
+	head := lipgloss.JoinHorizontal(0, pageCount, helpText)
 
 	var body string
 	starti := this.page * this.pageSize
@@ -103,16 +105,5 @@ func (this *list) View() string {
 		}
 	}
 
-	//find width of table body
-	tail := "Enter: Select Set   Left: Prev Page   Right: Next Page"
-	paddingAmount := lipgloss.Width(body) - lipgloss.Width(tail)
-	if paddingAmount > 0 {
-		lPad := math.Ceil(float64(paddingAmount) / 2.0)
-		rpad := math.Floor(float64(paddingAmount) / 2.0)
-		tail = this.unselectedStyle.Render(strings.Repeat("-", int(lPad)) + tail + strings.Repeat("-", int(rpad)))
-	} else {
-		tail = this.unselectedStyle.Render(tail)
-	}
-
-	return lipgloss.JoinVertical(0, head, body[0:len(body)-1], tail)
+	return lipgloss.JoinVertical(0, head, body[0:len(body)-1])
 }

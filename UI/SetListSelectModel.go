@@ -20,7 +20,7 @@ type setListSelectModel struct {
 
 func NewSetListSelectModel(backEnd BackendInterface.Backend, spin spinner.Model) setListSelectModel {
 	//setup setlist
-	listUi := newList([]item{}, 20, styleForegroundBright, styleForeground)
+	listUi := newList([]item{}, 20, styleForegroundBright, styleForeground, styleForegroundDim)
 
 	return setListSelectModel{backend: backEnd, spinner: spin, setListUI: listUi, waitingForSetData: true}
 }
