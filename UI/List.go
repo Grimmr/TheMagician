@@ -81,10 +81,24 @@ func (this *list) Update(msg tea.Msg) tea.Cmd {
 			if this.pos >= this.currentPageSize() {
 				this.pos = this.currentPageSize() - 1
 			}
+		case "enter":
+			return this.SelectItem(this.page*this.pageSize + this.pos)
 		}
 	}
 
 	return nil
+}
+
+type selectedItemFromList struct {
+	listUI *list
+	choice item
+	index  int
+}
+
+func (this *list) SelectItem(choice int) tea.Cmd {
+	return func() tea.Msg {
+		return selectedItemFromList{listUI: this, choice: this.rows[choice], index: choice}
+	}
 }
 
 func (this *list) View() string {

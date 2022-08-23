@@ -18,7 +18,7 @@ func NewBackendSetupModel() BackendSetupModel {
 	spin := spinner.New()
 	spin.Spinner = spinner.Moon
 	spin.Spinner.FPS = time.Second / 8
-	spin.Style = styleForegroundDim
+	spin.Style = styleForeground
 
 	return BackendSetupModel{spinner: spin}
 }

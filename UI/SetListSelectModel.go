@@ -37,7 +37,8 @@ func (m setListSelectModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			return m, tea.Quit
 		}
 		if !m.waitingForSetData {
-			return m, m.setListUI.Update(msg)
+			cmd := m.setListUI.Update(msg)
+			return m, cmd
 		}
 	case spinner.TickMsg:
 		var cmd tea.Cmd
@@ -51,6 +52,8 @@ func (m setListSelectModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			setItems = append(setItems, item{name: row["name"], desc: row["date"]})
 			m.setListUI.rows = setItems
 		}
+	case selectedItemFromList:
+		//TODO return the model that collects card data and outputs it to a csv table
 	}
 
 	return m, nil
