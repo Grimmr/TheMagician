@@ -53,7 +53,8 @@ func (m setListSelectModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.setListUI.rows = setItems
 		}
 	case selectedItemFromList:
-		//TODO return the model that collects card data and outputs it to a csv table
+		newModel := NewOutputCsvModel(m.backend, m.spinner, m.setListData[msg.index]["url"], m.setListData[msg.index]["name"]+".csv")
+		return newModel, newModel.Init()
 	}
 
 	return m, nil
