@@ -2,6 +2,7 @@ package UI
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/Grimmr/TheMagician/BackendInterface"
 	"github.com/charmbracelet/bubbles/spinner"
@@ -53,7 +54,7 @@ func (m setListSelectModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.setListUI.rows = setItems
 		}
 	case selectedItemFromList:
-		newModel := NewOutputCsvModel(m.backend, m.spinner, m.setListData[msg.index]["url"], m.setListData[msg.index]["name"]+".csv")
+		newModel := NewOutputCsvModel(m.backend, m.spinner, m.setListData[msg.index]["url"], strings.Replace(m.setListData[msg.index]["name"]+".csv", " ", "-", -1))
 		return newModel, newModel.Init()
 	}
 
